@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AbsenceManagementApp.Views.AdminPage"
+             Title="Administration">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label Text="Panneau d'administration"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+            
+            <Frame BorderColor="LightGray"
+                   CornerRadius="10"
+                   Padding="15"
+                   Margin="0,10,0,0">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Gestion des utilisateurs"
+                           FontSize="18"
+                           FontAttributes="Bold" />
+                    
+                    <Button Text="Gérer les parents"
+                            Command="{Binding ManageParentsCommand}" />
+                    
+                    <Button Text="Gérer les enseignants"
+                            Command="{Binding ManageTeachersCommand}" />
+                    
+                    <Button Text="Gérer les étudiants"
+                            Command="{Binding ManageStudentsCommand}" />
+                </VerticalStackLayout>
+            </Frame>
+            
+            <Frame BorderColor="LightGray"
+                   CornerRadius="10"
+                   Padding="15"
+                   Margin="0,10,0,0">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Gestion des classes"
+                           FontSize="18"
+                           FontAttributes="Bold" />
+                    
+                    <Button Text="Gérer les classes"
+                            Command="{Binding ManageClassesCommand}" />
+                </VerticalStackLayout>
+            </Frame>
+            
+            <Frame BorderColor="LightGray"
+                   CornerRadius="10"
+                   Padding="15"
+                   Margin="0,10,0,0">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Rapports"
+                           FontSize="18"
+                           FontAttributes="Bold" />
+                    
+                    <Button Text="Statistiques globales"
+                            Command="{Binding GlobalStatsCommand}" />
+                    
+                    <Button Text="Exporter les données"
+                            Command="{Binding ExportDataCommand}" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+
