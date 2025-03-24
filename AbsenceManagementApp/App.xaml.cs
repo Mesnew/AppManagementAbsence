@@ -15,11 +15,11 @@ namespace AbsenceManagementApp
             _authService = authService;
             _loginPage = loginPage;
             
-            // Définir la page de connexion par défaut
-            MainPage = new NavigationPage(_loginPage);
+            // Effacer les données d'authentification au démarrage
+            _authService.ClearAuthDataAsync();
             
-            // Vérifier si l'utilisateur est déjà connecté
-            CheckLoginStatus();
+            // Définir la page de connexion comme page de démarrage
+            MainPage = new NavigationPage(_loginPage);
         }
         
         private async void CheckLoginStatus()

@@ -38,9 +38,21 @@ namespace AbsenceManagementApp.Services
 
         public async Task LogoutAsync()
         {
-            SecureStorage.Remove(TokenKey);
-            SecureStorage.Remove(UsernameKey);
-            SecureStorage.Remove(RoleKey);
+            await ClearAuthDataAsync();
+        }
+
+        public async Task ClearAuthDataAsync()
+        {
+            try
+            {
+                SecureStorage.Remove(TokenKey);
+                SecureStorage.Remove(UsernameKey);
+                SecureStorage.Remove(RoleKey);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Erreur lors de la suppression des données d'authentification: {ex.Message}");
+            }
         }
 
         public async Task<bool> IsAuthenticatedAsync()
@@ -51,12 +63,12 @@ namespace AbsenceManagementApp.Services
 
         public async Task<string> GetUsernameAsync()
         {
-            return await SecureStorage.GetAsync(UsernameKey);
+            return await SecureStorage.GetAsync(UsernameKey) ?? string.Empty;
         }
 
         public async Task<string> GetRoleAsync()
         {
-            return await SecureStorage.GetAsync(RoleKey);
+            return await SecureStorage.GetAsync(RoleKey) ?? string.Empty;
         }
     }
 }

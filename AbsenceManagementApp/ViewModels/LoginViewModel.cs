@@ -43,6 +43,9 @@ namespace AbsenceManagementApp.ViewModels
             #endif
             
             LoginCommand = new AsyncRelayCommand(LoginAsync);
+            
+            // S'assurer qu'aucune donnée d'authentification n'est présente
+            _authService.ClearAuthDataAsync();
         }
 
         private async Task LoginAsync()
