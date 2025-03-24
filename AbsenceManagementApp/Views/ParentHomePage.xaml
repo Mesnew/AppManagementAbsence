@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AbsenceManagementApp.Views.ParentHomePage"
+             Title="Accueil Parent">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Frame BorderColor="LightGray" CornerRadius="10" Padding="15">
+                <VerticalStackLayout>
+                    <Label Text="Bienvenue dans l'application de gestion des absences" 
+                           FontSize="20" 
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,15"/>
+                    
+                    <Label Text="Vous êtes connecté en tant que parent" 
+                           FontSize="16"
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,20"/>
+                    
+                    <Label Text="Que souhaitez-vous faire ?" 
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,20"/>
+                </VerticalStackLayout>
+            </Frame>
+            
+            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" ColumnSpacing="15" RowSpacing="15">
+                <Frame Grid.Row="0" Grid.Column="0" BorderColor="LightGray" CornerRadius="10" Padding="15">
+                    <VerticalStackLayout Spacing="10">
+                        <Image Source="calendar.png" HeightRequest="50" WidthRequest="50" HorizontalOptions="Center"/>
+                        <Label Text="Absences" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Button Text="Consulter" Command="{Binding NavigateToAbsencesCommand}" HorizontalOptions="Fill"/>
+                    </VerticalStackLayout>
+                </Frame>
+                
+                <Frame Grid.Row="0" Grid.Column="1" BorderColor="LightGray" CornerRadius="10" Padding="15">
+                    <VerticalStackLayout Spacing="10">
+                        <Image Source="notification.png" HeightRequest="50" WidthRequest="50" HorizontalOptions="Center"/>
+                        <Label Text="Notifications" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Button Text="Consulter" Command="{Binding NavigateToNotificationsCommand}" HorizontalOptions="Fill"/>
+                    </VerticalStackLayout>
+                </Frame>
+                
+                <Frame Grid.Row="1" Grid.Column="0" BorderColor="LightGray" CornerRadius="10" Padding="15">
+                    <VerticalStackLayout Spacing="10">
+                        <Image Source="chart.png" HeightRequest="50" WidthRequest="50" HorizontalOptions="Center"/>
+                        <Label Text="Statistiques" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Button Text="Consulter" Command="{Binding NavigateToStatisticsCommand}" HorizontalOptions="Fill"/>
+                    </VerticalStackLayout>
+                </Frame>
+                
+                <Frame Grid.Row="1" Grid.Column="1" BorderColor="LightGray" CornerRadius="10" Padding="15">
+                    <VerticalStackLayout Spacing="10">
+                        <Image Source="logout.png" HeightRequest="50" WidthRequest="50" HorizontalOptions="Center"/>
+                        <Label Text="Déconnexion" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Button Text="Se déconnecter" Command="{Binding LogoutCommand}" BackgroundColor="#FF5252" TextColor="White" HorizontalOptions="Fill"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AbsenceManagementApp.Views.StatisticsPage"
+             Title="{Binding Title}">
+    <Grid RowDefinitions="Auto,*"
+          Padding="20">
+        
+        <Picker Grid.Row="0"
+                Title="Sélectionner un élève"
+                ItemsSource="{Binding Students}"
+                ItemDisplayBinding="{Binding FullName}"
+                SelectedItem="{Binding SelectedStudent}"
+                Margin="0,10,0,20" />
+        
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="20"
+                                 IsVisible="{Binding Statistics, Converter={StaticResource NotNullConverter}}">
+                
+                <Frame BorderColor="LightGray"
+                       CornerRadius="10"
+                       Padding="15">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Résumé des absences"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center" />
+                        
+                        <Grid ColumnDefinitions="*,*,*"
+                              RowDefinitions="Auto,Auto"
+                              Margin="0,10,0,0">
+                            
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="Total"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center" />
+                            
+                            <Label Grid.Row="0"
+                                   Grid.Column="1"
+                                   Text="Justifiées"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center" />
+                            
+                            <Label Grid.Row="0"
+                                   Grid.Column="2"
+                                   Text="Non justifiées"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center" />
+                            
+                            <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="{Binding Statistics.TotalAbsences}"
+                                   FontSize="24"
+                                   HorizontalOptions="Center" />
+                            
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding Statistics.JustifiedAbsences}"
+                                   FontSize="24"
+                                   TextColor="Green"
+                                   HorizontalOptions="Center" />
+                            
+                            <Label Grid.Row="1"
+                                   Grid.Column="2"
+                                   Text="{Binding Statistics.UnjustifiedAbsences}"
+                                   FontSize="24"
+                                   TextColor="Red"
+                                   HorizontalOptions="Center" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+                
+                <Frame BorderColor="LightGray"
+                       CornerRadius="10"
+                       Padding="15">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Absences par mois"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center" />
+                        
+                        <!-- Ici, vous pourriez ajouter un graphique ou une visualisation des données -->
+                        <CollectionView ItemsSource="{Binding Statistics.AbsencesByMonth}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,*"
+                                          Padding="5">
+                                        <Label Grid.Column="0"
+                                               Text="{Binding Key, Converter={StaticResource MonthNumberToNameConverter}}"
+                                               FontAttributes="Bold" />
+                                        
+                                        <Label Grid.Column="1"
+                                               Text="{Binding Value}"
+                                               HorizontalOptions="End" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <ActivityIndicator Grid.Row="1"
+                           IsRunning="{Binding IsBusy}"
+                           IsVisible="{Binding IsBusy}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+    </Grid>
+</ContentPage>
+

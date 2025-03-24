@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AbsenceManagementApp.Views.NotificationsPage"
+             Title="{Binding Title}">
+    <RefreshView Command="{Binding RefreshCommand}"
+                 IsRefreshing="{Binding IsBusy}">
+        <CollectionView ItemsSource="{Binding Notifications}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedNotification}">
+            <CollectionView.EmptyView>
+                <StackLayout VerticalOptions="Center"
+                             HorizontalOptions="Center">
+                    <Label Text="Aucune notification à afficher"
+                           FontSize="18"
+                           HorizontalOptions="Center" />
+                </StackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="10"
+                           Padding="15"
+                           BorderColor="LightGray"
+                           CornerRadius="10"
+                           BackgroundColor="{Binding IsRead, Converter={StaticResource BoolToColorConverter}}">
+                        <Grid RowDefinitions="Auto,Auto"
+                              ColumnDefinitions="*,Auto">
+                            
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Text="{Binding Message}"
+                                   FontSize="16" />
+                            
+                            <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="{Binding CreatedAt, StringFormat='{0:dd/MM/yyyy HH:mm}'}"
+                                   FontSize="12"
+                                   TextColor="Gray"
+                                   Margin="0,5,0,0" />
+                            
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding IsRead, Converter={StaticResource BoolToReadStatusConverter}}"
+                                   FontSize="12"
+                                   TextColor="Gray"
+                                   Margin="0,5,0,0" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>
+
